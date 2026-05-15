@@ -1,0 +1,13 @@
+{
+  "credentials": {
+    "email": "dawanos956@badgerhole.com",
+    "password": "Navi@123"
+  },
+  "jobDetails": {
+    "companyName": "Microsoft",
+    "jobTitle": "QA Automation Engineer",
+    "location": "Remote",
+    "jobStatus": "Applied",
+    "jobUrl": "https://careers.microsoft.com/"
+  }
+}
