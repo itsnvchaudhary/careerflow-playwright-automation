@@ -1,0 +1,271 @@
+
+> careerflow-playwright-automation@2.0.0 test
+> npx playwright test
+
+
+=== Framework Configuration ===
+Environment: dev
+Base URL: https://app.careerflow.ai
+Headless: false
+Workers: 1
+Max Retries: 2
+==============================
+
+
+Running 1 test using 1 worker
+
+
+=== Framework Configuration ===
+Environment: dev
+Base URL: https://app.careerflow.ai
+Headless: false
+Workers: 1
+Max Retries: 2
+==============================
+
+[2026-05-17T11:28:23.595Z] [JobTrackerTests] [INFO] Starting Job Tracker E2E test
+[2026-05-17T11:28:23.596Z] [LoginPage] [INFO] STEP: Navigate to login page - path: /login
+[2026-05-17T11:28:23.596Z] [LoginPage] [INFO] STEP: Navigate - to https://app.careerflow.ai/login
+[2026-05-17T11:28:28.120Z] [LoginPage] [INFO] STEP: Verify login page is visible
+[2026-05-17T11:28:28.169Z] [LoginPage] [INFO] STEP: Perform login flow - email: dawanos956@badgerhole.com
+[2026-05-17T11:28:28.169Z] [LoginPage] [INFO] STEP: Verify login page is visible
+[2026-05-17T11:28:28.191Z] [LoginPage] [INFO] STEP: Enter email - dawanos956@badgerhole.com
+[2026-05-17T11:28:28.240Z] [LoginPage] [INFO] STEP: Enter password
+[2026-05-17T11:28:28.274Z] [LoginPage] [INFO] STEP: Click login button
+[2026-05-17T11:28:28.555Z] [LoginPage] [INFO] Login completed successfully
+[2026-05-17T11:28:28.555Z] [HomePage] [INFO] STEP: Verify dashboard is loaded
+[2026-05-17T11:28:33.390Z] [HomePage] [INFO] Dashboard loaded successfully
+[2026-05-17T11:28:33.391Z] [HomePage] [INFO] STEP: Navigate to Job Tracker
+[2026-05-17T11:28:33.503Z] [HomePage] [INFO] Navigated to Job Tracker
+[2026-05-17T11:28:33.503Z] [JobTrackerPage] [INFO] STEP: Verify Job Tracker page is loaded
+[2026-05-17T11:28:42.025Z] [JobTrackerPage] [INFO] STEP: Verify Applied section exists
+[2026-05-17T11:28:42.034Z] [JobTrackerPage] [INFO] Job Tracker page loaded successfully
+[2026-05-17T11:28:42.034Z] [JobTrackerPage] [INFO] STEP: Click Add Job button
+[2026-05-17T11:28:42.482Z] [JobTrackerPage] [INFO] Add Job page opened
+[2026-05-17T11:28:42.483Z] [AddJobPage] [INFO] STEP: Verify Add Job form is visible
+[2026-05-17T11:28:42.544Z] [AddJobPage] [INFO] STEP: Add job with details - Microsoft
+[2026-05-17T11:28:42.544Z] [AddJobPage] [INFO] STEP: Verify Add Job form is visible
+[2026-05-17T11:28:42.575Z] [AddJobPage] [INFO] STEP: Fill company name - Microsoft
+[2026-05-17T11:28:42.617Z] [AddJobPage] [INFO] STEP: Fill job title - QA Automation Engineer
+[2026-05-17T11:28:42.669Z] [AddJobPage] [INFO] STEP: Fill location - Remote
+[2026-05-17T11:28:42.713Z] [AddJobPage] [INFO] STEP: Fill job URL - https://careers.microsoft.com/
+[2026-05-17T11:28:42.751Z] [AddJobPage] [INFO] STEP: Select Applied status from Section dropdown
+  ✘  1 [chromium] › tests/jobTracker.spec.js:29:3 › Careerflow.ai Job Tracker E2E Flow › Verify user can add a job with Applied status in Careerflow Job Tracker (52.1s)
+
+=== Framework Configuration ===
+Environment: dev
+Base URL: https://app.careerflow.ai
+Headless: false
+Workers: 1
+Max Retries: 2
+==============================
+
+[2026-05-17T11:29:16.026Z] [JobTrackerTests] [INFO] Starting Job Tracker E2E test
+[2026-05-17T11:29:16.027Z] [LoginPage] [INFO] STEP: Navigate to login page - path: /login
+[2026-05-17T11:29:16.028Z] [LoginPage] [INFO] STEP: Navigate - to https://app.careerflow.ai/login
+[2026-05-17T11:29:21.995Z] [LoginPage] [INFO] STEP: Verify login page is visible
+[2026-05-17T11:29:22.032Z] [LoginPage] [INFO] STEP: Perform login flow - email: dawanos956@badgerhole.com
+[2026-05-17T11:29:22.032Z] [LoginPage] [INFO] STEP: Verify login page is visible
+[2026-05-17T11:29:22.052Z] [LoginPage] [INFO] STEP: Enter email - dawanos956@badgerhole.com
+[2026-05-17T11:29:22.098Z] [LoginPage] [INFO] STEP: Enter password
+[2026-05-17T11:29:22.177Z] [LoginPage] [INFO] STEP: Click login button
+[2026-05-17T11:29:22.479Z] [LoginPage] [INFO] Login completed successfully
+[2026-05-17T11:29:22.479Z] [HomePage] [INFO] STEP: Verify dashboard is loaded
+[2026-05-17T11:29:27.317Z] [HomePage] [INFO] Dashboard loaded successfully
+[2026-05-17T11:29:27.317Z] [HomePage] [INFO] STEP: Navigate to Job Tracker
+[2026-05-17T11:29:27.423Z] [HomePage] [INFO] Navigated to Job Tracker
+[2026-05-17T11:29:27.423Z] [JobTrackerPage] [INFO] STEP: Verify Job Tracker page is loaded
+[2026-05-17T11:29:33.955Z] [JobTrackerPage] [INFO] STEP: Verify Applied section exists
+[2026-05-17T11:29:33.965Z] [JobTrackerPage] [INFO] Job Tracker page loaded successfully
+[2026-05-17T11:29:33.965Z] [JobTrackerPage] [INFO] STEP: Click Add Job button
+[2026-05-17T11:29:34.093Z] [JobTrackerPage] [INFO] Add Job page opened
+[2026-05-17T11:29:34.093Z] [AddJobPage] [INFO] STEP: Verify Add Job form is visible
+[2026-05-17T11:29:34.123Z] [AddJobPage] [INFO] STEP: Add job with details - Microsoft
+[2026-05-17T11:29:34.123Z] [AddJobPage] [INFO] STEP: Verify Add Job form is visible
+[2026-05-17T11:29:34.157Z] [AddJobPage] [INFO] STEP: Fill company name - Microsoft
+[2026-05-17T11:29:34.195Z] [AddJobPage] [INFO] STEP: Fill job title - QA Automation Engineer
+[2026-05-17T11:29:34.239Z] [AddJobPage] [INFO] STEP: Fill location - Remote
+[2026-05-17T11:29:34.308Z] [AddJobPage] [INFO] STEP: Fill job URL - https://careers.microsoft.com/
+[2026-05-17T11:29:34.338Z] [AddJobPage] [INFO] STEP: Select Applied status from Section dropdown
+  ✘  2 [chromium] › tests/jobTracker.spec.js:29:3 › Careerflow.ai Job Tracker E2E Flow › Verify user can add a job with Applied status in Careerflow Job Tracker (retry #1) (49.6s)
+
+=== Framework Configuration ===
+Environment: dev
+Base URL: https://app.careerflow.ai
+Headless: false
+Workers: 1
+Max Retries: 2
+==============================
+
+[2026-05-17T11:30:07.215Z] [JobTrackerTests] [INFO] Starting Job Tracker E2E test
+[2026-05-17T11:30:07.216Z] [LoginPage] [INFO] STEP: Navigate to login page - path: /login
+[2026-05-17T11:30:07.216Z] [LoginPage] [INFO] STEP: Navigate - to https://app.careerflow.ai/login
+[2026-05-17T11:30:14.496Z] [LoginPage] [INFO] STEP: Verify login page is visible
+[2026-05-17T11:30:14.533Z] [LoginPage] [INFO] STEP: Perform login flow - email: dawanos956@badgerhole.com
+[2026-05-17T11:30:14.533Z] [LoginPage] [INFO] STEP: Verify login page is visible
+[2026-05-17T11:30:14.553Z] [LoginPage] [INFO] STEP: Enter email - dawanos956@badgerhole.com
+[2026-05-17T11:30:14.601Z] [LoginPage] [INFO] STEP: Enter password
+[2026-05-17T11:30:14.691Z] [LoginPage] [INFO] STEP: Click login button
+[2026-05-17T11:30:14.806Z] [LoginPage] [INFO] Login completed successfully
+[2026-05-17T11:30:14.806Z] [HomePage] [INFO] STEP: Verify dashboard is loaded
+[2026-05-17T11:30:19.718Z] [HomePage] [INFO] Dashboard loaded successfully
+[2026-05-17T11:30:19.718Z] [HomePage] [INFO] STEP: Navigate to Job Tracker
+[2026-05-17T11:30:19.819Z] [HomePage] [INFO] Navigated to Job Tracker
+[2026-05-17T11:30:19.820Z] [JobTrackerPage] [INFO] STEP: Verify Job Tracker page is loaded
+[2026-05-17T11:30:28.221Z] [JobTrackerPage] [INFO] STEP: Verify Applied section exists
+[2026-05-17T11:30:28.229Z] [JobTrackerPage] [INFO] Job Tracker page loaded successfully
+[2026-05-17T11:30:28.229Z] [JobTrackerPage] [INFO] STEP: Click Add Job button
+[2026-05-17T11:30:28.365Z] [JobTrackerPage] [INFO] Add Job page opened
+[2026-05-17T11:30:28.365Z] [AddJobPage] [INFO] STEP: Verify Add Job form is visible
+[2026-05-17T11:30:28.402Z] [AddJobPage] [INFO] STEP: Add job with details - Microsoft
+[2026-05-17T11:30:28.402Z] [AddJobPage] [INFO] STEP: Verify Add Job form is visible
+[2026-05-17T11:30:28.440Z] [AddJobPage] [INFO] STEP: Fill company name - Microsoft
+[2026-05-17T11:30:28.480Z] [AddJobPage] [INFO] STEP: Fill job title - QA Automation Engineer
+[2026-05-17T11:30:28.521Z] [AddJobPage] [INFO] STEP: Fill location - Remote
+[2026-05-17T11:30:28.680Z] [AddJobPage] [INFO] STEP: Fill job URL - https://careers.microsoft.com/
+[2026-05-17T11:30:28.710Z] [AddJobPage] [INFO] STEP: Select Applied status from Section dropdown
+  ✘  3 [chromium] › tests/jobTracker.spec.js:29:3 › Careerflow.ai Job Tracker E2E Flow › Verify user can add a job with Applied status in Careerflow Job Tracker (retry #2) (52.9s)
+
+
+  1) [chromium] › tests/jobTracker.spec.js:29:3 › Careerflow.ai Job Tracker E2E Flow › Verify user can add a job with Applied status in Careerflow Job Tracker › Fill job details and select Applied status 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+    Locator: locator('#rc_select_0_list_1').getByRole('option', { name: /applied/i }).first()
+    Expected: visible
+    Timeout: 30000ms
+    Error: element(s) not found
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 30000ms[22m
+    [2m  - waiting for locator('#rc_select_0_list_1').getByRole('option', { name: /applied/i }).first()[22m
+
+
+       at ../pages/AddJobPage.js:105
+
+      103 |
+      104 |     // Select the "Applied" option - use dropdown list ID for specificity to avoid strict mode violation
+    > 105 |     await expect(this.appliedOption).toBeVisible({ timeout: this.defaultTimeout });
+          |                                      ^
+      106 |     await this.appliedOption.click();
+      107 |
+      108 |     this.logger.debug('Applied status selected successfully');
+        at AddJobPage.selectStatusAsApplied (/Users/vetviren/Desktop/Interview Preprations/careerflow-playwright-automation/pages/AddJobPage.js:105:38)
+        at AddJobPage.addJob (/Users/vetviren/Desktop/Interview Preprations/careerflow-playwright-automation/pages/AddJobPage.js:141:5)
+        at /Users/vetviren/Desktop/Interview Preprations/careerflow-playwright-automation/tests/jobTracker.spec.js:68:7
+        at /Users/vetviren/Desktop/Interview Preprations/careerflow-playwright-automation/tests/jobTracker.spec.js:67:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/jobTracker-Careerflow-ai-J-a1a26-s-in-Careerflow-Job-Tracker-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/jobTracker-Careerflow-ai-J-a1a26-s-in-Careerflow-Job-Tracker-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/jobTracker-Careerflow-ai-J-a1a26-s-in-Careerflow-Job-Tracker-chromium/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/jobTracker-Careerflow-ai-J-a1a26-s-in-Careerflow-Job-Tracker-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/jobTracker-Careerflow-ai-J-a1a26-s-in-Careerflow-Job-Tracker-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+    Locator: locator('#rc_select_0_list_1').getByRole('option', { name: /applied/i }).first()
+    Expected: visible
+    Timeout: 30000ms
+    Error: element(s) not found
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 30000ms[22m
+    [2m  - waiting for locator('#rc_select_0_list_1').getByRole('option', { name: /applied/i }).first()[22m
+
+
+       at ../pages/AddJobPage.js:105
+
+      103 |
+      104 |     // Select the "Applied" option - use dropdown list ID for specificity to avoid strict mode violation
+    > 105 |     await expect(this.appliedOption).toBeVisible({ timeout: this.defaultTimeout });
+          |                                      ^
+      106 |     await this.appliedOption.click();
+      107 |
+      108 |     this.logger.debug('Applied status selected successfully');
+        at AddJobPage.selectStatusAsApplied (/Users/vetviren/Desktop/Interview Preprations/careerflow-playwright-automation/pages/AddJobPage.js:105:38)
+        at AddJobPage.addJob (/Users/vetviren/Desktop/Interview Preprations/careerflow-playwright-automation/pages/AddJobPage.js:141:5)
+        at /Users/vetviren/Desktop/Interview Preprations/careerflow-playwright-automation/tests/jobTracker.spec.js:68:7
+        at /Users/vetviren/Desktop/Interview Preprations/careerflow-playwright-automation/tests/jobTracker.spec.js:67:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/jobTracker-Careerflow-ai-J-a1a26-s-in-Careerflow-Job-Tracker-chromium-retry1/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/jobTracker-Careerflow-ai-J-a1a26-s-in-Careerflow-Job-Tracker-chromium-retry1/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/jobTracker-Careerflow-ai-J-a1a26-s-in-Careerflow-Job-Tracker-chromium-retry1/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/jobTracker-Careerflow-ai-J-a1a26-s-in-Careerflow-Job-Tracker-chromium-retry1/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/jobTracker-Careerflow-ai-J-a1a26-s-in-Careerflow-Job-Tracker-chromium-retry1/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #2 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+    Locator: locator('#rc_select_0_list_1').getByRole('option', { name: /applied/i }).first()
+    Expected: visible
+    Timeout: 30000ms
+    Error: element(s) not found
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 30000ms[22m
+    [2m  - waiting for locator('#rc_select_0_list_1').getByRole('option', { name: /applied/i }).first()[22m
+
+
+       at ../pages/AddJobPage.js:105
+
+      103 |
+      104 |     // Select the "Applied" option - use dropdown list ID for specificity to avoid strict mode violation
+    > 105 |     await expect(this.appliedOption).toBeVisible({ timeout: this.defaultTimeout });
+          |                                      ^
+      106 |     await this.appliedOption.click();
+      107 |
+      108 |     this.logger.debug('Applied status selected successfully');
+        at AddJobPage.selectStatusAsApplied (/Users/vetviren/Desktop/Interview Preprations/careerflow-playwright-automation/pages/AddJobPage.js:105:38)
+        at AddJobPage.addJob (/Users/vetviren/Desktop/Interview Preprations/careerflow-playwright-automation/pages/AddJobPage.js:141:5)
+        at /Users/vetviren/Desktop/Interview Preprations/careerflow-playwright-automation/tests/jobTracker.spec.js:68:7
+        at /Users/vetviren/Desktop/Interview Preprations/careerflow-playwright-automation/tests/jobTracker.spec.js:67:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/jobTracker-Careerflow-ai-J-a1a26-s-in-Careerflow-Job-Tracker-chromium-retry2/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/jobTracker-Careerflow-ai-J-a1a26-s-in-Careerflow-Job-Tracker-chromium-retry2/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/jobTracker-Careerflow-ai-J-a1a26-s-in-Careerflow-Job-Tracker-chromium-retry2/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/jobTracker-Careerflow-ai-J-a1a26-s-in-Careerflow-Job-Tracker-chromium-retry2/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/jobTracker-Careerflow-ai-J-a1a26-s-in-Careerflow-Job-Tracker-chromium-retry2/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [chromium] › tests/jobTracker.spec.js:29:3 › Careerflow.ai Job Tracker E2E Flow › Verify user can add a job with Applied status in Careerflow Job Tracker 
+
+[36m  Serving HTML report at http://localhost:9323. Press Ctrl+C to quit.[39m

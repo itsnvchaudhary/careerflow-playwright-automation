@@ -1,13 +1,16 @@
 {
-  "credentials": {
-    "email": "dawanos956@badgerhole.com",
-    "password": "Navi@123"
-  },
   "jobDetails": {
     "companyName": "Microsoft",
     "jobTitle": "QA Automation Engineer",
     "location": "Remote",
     "jobStatus": "Applied",
     "jobUrl": "https://careers.microsoft.com/"
+  },
+  "altJobDetails": {
+    "companyName": "Google",
+    "jobTitle": "Software Quality Engineer",
+    "location": "Mountain View, CA",
+    "jobStatus": "Applied",
+    "jobUrl": "https://careers.google.com/"
   }
 }

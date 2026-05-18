@@ -1,14 +1,15 @@
 {
   "name": "careerflow-playwright-automation",
-  "version": "1.0.0",
-  "description": "Submission-ready Playwright UI automation framework for Careerflow.ai Job Tracker flow.",
+  "version": "2.0.0",
+  "description": "Enterprise-grade Playwright UI automation framework for Careerflow.ai Job Tracker. SDET best practices, security-first design, CI/CD ready.",
   "main": "index.js",
   "scripts": {
     "test": "npx playwright test",
     "test:headed": "npx playwright test --headed",
     "test:debug": "npx playwright test --debug",
     "test:ui": "npx playwright test --ui",
-    "report": "npx playwright show-report"
+    "report": "npx playwright show-report",
+    "test:ci": "npx playwright test --reporter=html --reporter=json --reporter=junit"
   },
   "keywords": [
     "playwright",
@@ -16,12 +17,20 @@
     "careerflow",
     "qa",
     "pom",
-    "javascript"
+    "javascript",
+    "sdet",
+    "e2e",
+    "testing"
   ],
   "author": "Naveen",
   "license": "ISC",
-  "devDependencies": {
-    "@playwright/test": "^1.56.0",
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "dependencies": {
     "dotenv": "^16.4.7"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.56.0"
   }
 }

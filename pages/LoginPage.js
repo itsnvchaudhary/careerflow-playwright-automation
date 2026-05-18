@@ -1,69 +1,75 @@
+/**
+ * Login Page Object Model
+ * Handles all login-related interactions and verifications
+ */
+
 const { expect } = require('@playwright/test');
+const BasePage = require('../utils/basePage');
+const config = require('../config/config');
 
-class LoginPage {
+class LoginPage extends BasePage {
   constructor(page) {
-    this.page = page;
-
-   this.emailInput = page
-  .getByLabel(/email/i)
-  .or(page.getByPlaceholder(/youremail@mail.com/i))
-  .first();
-
-this.passwordInput = page
-  .getByLabel(/password/i)
-  .or(page.getByPlaceholder(/enter the password/i))
-  .first();
-
-this.loginButton = page.getByRole('button', { name: /^Continue$/i });
-
+    super(page);
     
+    this.emailInput = page
+      .getByPlaceholder(/example@email\.com|youremail@mail\.com/i)
+      .or(page.locator('input[type="email"]'))
+      .first();
+    
+    this.passwordInput = page
+      .getByPlaceholder(/password/i)
+      .or(page.locator('input[type="password"]'))
+      .first();
+    
+    this.loginButton = page.getByRole('button', { name: /^Login|Continue$/i });
   }
-
+  
   async navigateToLoginPage() {
-    const loginPath = process.env.LOGIN_PATH || '/login';
-
-    await this.page.goto(loginPath, {
-      waitUntil: 'domcontentloaded'
-    });
-
-    await this.page.waitForLoadState('networkidle');
+    const loginPath = config.loginPath || '/login';
+    this.logger.step('Navigate to login page', `path: ${loginPath}`);
+    await this.navigateToUrl(config.getUrl(loginPath));
   }
-
+  
   async verifyLoginPageIsVisible() {
-    await expect(this.emailInput).toBeVisible({ timeout: 30000 });
-    await expect(this.passwordInput).toBeVisible({ timeout: 30000 });
-    await expect(this.loginButton).toBeVisible({ timeout: 30000 });
-    await expect(this.loginButton).toBeEnabled();
-  }
-
-  async enterEmail(email) {
-    await expect(this.emailInput).toBeVisible();
-    await this.emailInput.fill(email);
-    await expect(this.emailInput).toHaveValue(email);
-  }
-
-  async enterPassword(password) {
-    await expect(this.passwordInput).toBeVisible();
-    await this.passwordInput.fill(password);
-  }
-
-  async clickLoginButton() {
-    await expect(this.loginButton).toBeVisible();
-    await expect(this.loginButton).toBeEnabled();
-
-    await Promise.all([
-      this.page.waitForLoadState('domcontentloaded'),
-      this.loginButton.click()
+    this.logger.step('Verify login page is visible');
+    await this.verifyElementsVisible([
+      [this.emailInput, 'email input'],
+      [this.passwordInput, 'password input'],
+      [this.loginButton, 'login button'],
     ]);
-
-    await this.page.waitForLoadState('networkidle');
+    await expect(this.loginButton).toBeEnabled();
+    this.logger.debug('All login elements are visible and ready');
   }
-
+  
+  async enterEmail(email) {
+    this.logger.step('Enter email', email);
+    await this.fillInput(this.emailInput, email, 'email field');
+  }
+  
+  async enterPassword(password) {
+    this.logger.step('Enter password');
+    await expect(this.passwordInput).toBeVisible({
+      timeout: this.defaultTimeout,
+    });
+    await this.passwordInput.fill(password);
+    this.logger.debug('Password entered');
+  }
+  
+  async clickLoginButton() {
+    this.logger.step('Click login button');
+    await this.clickElement(this.loginButton, 'login button', true);
+  }
+  
+  /**
+   * Complete login flow with email and password
+   */
   async login(email, password) {
+    this.logger.step('Perform login flow', `email: ${email}`);
     await this.verifyLoginPageIsVisible();
     await this.enterEmail(email);
     await this.enterPassword(password);
     await this.clickLoginButton();
+    this.logger.info('Login completed successfully');
   }
 }
 
