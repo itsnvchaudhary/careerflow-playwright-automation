@@ -1,4 +1,4 @@
-const testData = require('../testData/testData.json');
+const testData = require('../testdata/testData.json');
 
 function getCredentials() {
   return {
