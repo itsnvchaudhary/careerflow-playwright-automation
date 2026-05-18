@@ -13,6 +13,9 @@ jobs:
     runs-on: ubuntu-latest
     env:
       FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+      CI: true
+      ENVIRONMENT: ci
+      HEADLESS: true
       CAREERFLOW_EMAIL: ${{ secrets.CAREERFLOW_EMAIL }}
       CAREERFLOW_PASSWORD: ${{ secrets.CAREERFLOW_PASSWORD }}
     steps:
