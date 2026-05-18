@@ -181,7 +181,7 @@ cp .env.example .env
 Edit `.env` with your credentials:
 
 ```env
-BASE_URL=https://app2.careerflow.ai
+BASE_URL=https://app.careerflow.ai
 LOGIN_PATH=/login
 
 # Careerflow.ai Test Credentials
@@ -370,7 +370,7 @@ Screenshots and traces saved to:
 
 This framework was built with the following assumptions:
 
-1. **Careerflow.ai URL**: `https://app2.careerflow.ai` is the target environment
+1. **Careerflow.ai URL**: `https://app.careerflow.ai` is the target environment
 2. **Test Account**: Valid credentials required in `.env` file
 3. **Browser**: Chrome/Chromium (default; Firefox/Safari available)
 4. **Network**: Stable internet connection for app access
@@ -445,7 +445,7 @@ npm test
 
 ```bash
 # Use Playwright Inspector to find new selectors
-npx playwright codegen https://app2.careerflow.ai
+npx playwright codegen https://app.careerflow.ai
 ```
 
 ### Timeout Errors

@@ -320,7 +320,7 @@ npm run report         # View results
 ```
 === Framework Configuration ===
 Environment: dev
-Base URL: https://app2.careerflow.ai
+Base URL: https://app.careerflow.ai
 Headless: false
 Workers: 1
 Max Retries: 2

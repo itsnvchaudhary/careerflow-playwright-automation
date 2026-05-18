@@ -152,7 +152,7 @@ class BasePage {
 ```javascript
 const config = {
   environment: 'dev',
-  baseURL: 'https://app2.careerflow.ai',
+  baseURL: 'https://app.careerflow.ai',
   credentials: { email, password }, // From env vars only
   timeouts: { page, action, navigation, expect },
   retries: { maxRetries, retryOnFailure },
@@ -310,7 +310,7 @@ validateEnvVars() // Throws error if CAREERFLOW_EMAIL or CAREERFLOW_PASSWORD mis
 ```
 === Framework Configuration ===
 Environment: dev
-Base URL: https://app2.careerflow.ai
+Base URL: https://app.careerflow.ai
 Headless: false
 Workers: 1
 Max Retries: 2

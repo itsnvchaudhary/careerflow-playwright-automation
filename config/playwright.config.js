@@ -23,7 +23,7 @@ module.exports = defineConfig({
 
   use: {
     
-  baseURL: process.env.BASE_URL || 'https://app2.careerflow.ai',
+  baseURL: process.env.BASE_URL || 'https://app.careerflow.ai',
   ignoreHTTPSErrors: true,
 
     headless: false,

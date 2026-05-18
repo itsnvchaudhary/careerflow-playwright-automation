@@ -55,7 +55,7 @@ CAREERFLOW_EMAIL=your-email@example.com
 CAREERFLOW_PASSWORD=your-password
 
 # Optional (defaults provided)
-BASE_URL=https://app2.careerflow.ai
+BASE_URL=https://app.careerflow.ai
 HEADLESS=false
 LOG_LEVEL=INFO
 ```

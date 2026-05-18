@@ -127,7 +127,7 @@ cp .env.example .env
 Edit `.env` with your test environment details:
 
 ```env
-BASE_URL=https://app2.careerflow.ai
+BASE_URL=https://app.careerflow.ai
 LOGIN_PATH=/login
 ENVIRONMENT=dev
 HEADLESS=false
@@ -259,7 +259,7 @@ await test.step('Step Name', async () => {
 
 | Variable | Default | Purpose |
 |----------|---------|---------|
-| `BASE_URL` | `https://app2.careerflow.ai` | Application URL |
+| `BASE_URL` | `https://app.careerflow.ai` | Application URL |
 | `LOGIN_PATH` | `/login` | Login page path |
 | `ENVIRONMENT` | `dev` | Execution environment |
 | `PAGE_TIMEOUT` | `110000` | Page load timeout (ms) |

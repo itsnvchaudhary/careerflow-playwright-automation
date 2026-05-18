@@ -219,7 +219,7 @@ Expected output:
 ```
 === Framework Configuration ===
 Environment: dev
-Base URL: https://app2.careerflow.ai
+Base URL: https://app.careerflow.ai
 ...
 ==============================
 

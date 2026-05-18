@@ -28,7 +28,7 @@ class Config {
     validateEnvVars();
     
     this.environment = process.env.ENVIRONMENT || 'dev';
-    this.baseURL = process.env.BASE_URL || 'https://app2.careerflow.ai';
+    this.baseURL = process.env.BASE_URL || 'https://app.careerflow.ai';
     this.loginPath = process.env.LOGIN_PATH || '/login';
     
     // Credentials (from environment only - NO DEFAULTS TO JSON)
