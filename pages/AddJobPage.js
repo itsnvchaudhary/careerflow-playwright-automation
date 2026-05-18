@@ -93,18 +93,13 @@ class AddJobPage extends BasePage {
   async selectStatusAsApplied() {
     this.logger.step('Select Applied status from Section dropdown');
 
-    // Click dropdown with force: true to bypass event interception from "Saved" label
-    await this.sectionDropdown.click({ force: true });
-    this.logger.debug('Clicked dropdown selector');
+    // Click dropdown
+    await this.clickElement(this.sectionDropdown, 'status dropdown');
     
-    // Wait for the dropdown menu to appear by checking for the option element
-    await this.page.waitForSelector('[role="option"]', { timeout: 5000 });
-    this.logger.debug('Dropdown menu appeared');
-
-    // Select the "Applied" option - use getByRole with nth filter to match only option, not page heading
+    // Wait for the dropdown menu to appear and select Applied option
     const appliedOption = this.page.locator('[role="option"]').filter({ hasText: /^Applied$/ });
     await expect(appliedOption).toBeVisible({ timeout: this.defaultTimeout });
-    await appliedOption.click();
+    await this.clickElement(appliedOption, 'Applied status option');
 
     this.logger.debug('Applied status selected successfully');
   }
@@ -112,36 +107,14 @@ class AddJobPage extends BasePage {
   async saveJob() {
     this.logger.step('Save job');
     
-    try {
-      // First wait a bit for modal animation to complete
-      await this.page.waitForTimeout(500);
-      
-      // Try normal click first
-      this.logger.debug('Attempting normal click on submit button');
-      await this.saveButton.click({ timeout: 5000 });
-      this.logger.debug('Submit button clicked successfully');
-    } catch (error) {
-      // If normal click fails, try with force: true
-      this.logger.debug('Normal click failed, trying with force: true');
-      await this.saveButton.click({ force: true });
-      this.logger.debug('Submit button clicked with force: true');
-    }
+    // Click submit button
+    await this.clickElement(this.saveButton, 'submit button', false);
     
-    // Wait for the modal to close
-    try {
-      await this.page.waitForSelector('[class*="ant-modal-wrap"]', { state: 'hidden', timeout: 8000 });
-      this.logger.debug('Modal closed successfully');
-    } catch (e) {
-      this.logger.debug('Modal close timeout - may have closed or different selector');
-    }
-    
-    // Wait for network activity to settle
-    try {
-      await this.page.waitForLoadState('networkidle', { timeout: 5000 });
-      this.logger.debug('Network idle state reached');
-    } catch (e) {
-      this.logger.debug('Network idle timeout - continuing');
-    }
+    // Wait for modal to close using locator instead of hard timeout
+    const modalLocator = this.page.locator('[class*="ant-modal-wrap"]');
+    await modalLocator.waitFor({ state: 'hidden', timeout: this.defaultTimeout }).catch(() => {
+      this.logger.debug('Modal may have closed before wait');
+    });
     
     this.logger.info('Job saved');
   }
@@ -152,7 +125,7 @@ class AddJobPage extends BasePage {
     
     if (successVisible) {
       await expect(this.successMessage).toBeVisible({
-        timeout: 10000,
+        timeout: this.defaultTimeout,
       });
       this.logger.debug('Success message displayed');
     } else {
@@ -169,7 +142,12 @@ class AddJobPage extends BasePage {
     await this.fillCompanyName(jobDetails.companyName);
     await this.fillJobTitle(jobDetails.jobTitle);
     await this.fillLocation(jobDetails.location);
-    await this.fillJobUrl(jobDetails.jobUrl);
+    
+    // Only fill jobUrl if it exists
+    if (jobDetails.jobUrl) {
+      await this.fillJobUrl(jobDetails.jobUrl);
+    }
+    
     await this.selectStatusAsApplied();
     await this.saveJob();
     await this.verifyJobSavedOrPageUpdated();

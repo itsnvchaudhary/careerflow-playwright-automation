@@ -26,19 +26,32 @@ test.describe('Careerflow.ai Job Tracker E2E Flow', () => {
     addJobPage = new AddJobPage(page);
   });
   
-  test('Verify user can add a job with Applied status in Careerflow Job Tracker', async ({ page }) => {
+  test('Verify user can add a job with Applied status, verify it appears, and delete it from Careerflow Job Tracker', async ({ page }) => {
     /**
      * Business Value:
      * This is a critical user journey because Careerflow.ai helps job seekers track applications.
-     * The Job Tracker feature must reliably allow users to create, save, and verify job applications
+     * The Job Tracker feature must reliably allow users to create, save, verify, and delete job applications
      * with the correct status so users can manage their job search accurately.
+     * 
+     * Test Flow:
+     * 1. Navigate to login page
+     * 2. Login with credentials from environment variables
+     * 3. Verify dashboard loads
+     * 4. Navigate to Job Tracker
+     * 5. Click Add Job
+     * 6. Fill job details and select Applied status
+     * 7. Verify job appears in Applied section
+     * 8. Open job details and verify information
+     * 9. Delete the job
+     * 10. Verify job is removed
+     * 11. Logout
      */
     
     logger.info('Starting Job Tracker E2E test');
     const credentials = getCredentials();
     const jobDetails = getJobDetails();
     
-    await test.step('Navigate to Careerflow.ai login/signup page', async () => {
+    await test.step('Navigate to Careerflow.ai login page', async () => {
       await loginPage.navigateToLoginPage();
       await loginPage.verifyLoginPageIsVisible();
     });
@@ -68,10 +81,11 @@ test.describe('Careerflow.ai Job Tracker E2E Flow', () => {
       await addJobPage.addJob(jobDetails);
     });
     
-    await test.step('Verify added job appears under Applied section/status', async () => {
-      // Wait briefly to let the list update after save instead of reloading the page
-      await page.waitForTimeout(3000);
-      await jobTrackerPage.verifyJobTrackerPageIsLoaded();
+    await test.step('Verify added job appears under Applied section', async () => {
+      // Wait for page to stabilize after job creation
+      await page.waitForLoadState('networkidle', { timeout: 10000 }).catch(() => {
+        logger.debug('Network idle timeout - continuing');
+      });
       await jobTrackerPage.verifyAddedJobAppearsUnderAppliedStatus(jobDetails);
     });
     
@@ -82,6 +96,12 @@ test.describe('Careerflow.ai Job Tracker E2E Flow', () => {
       await jobTrackerPage.verifyJobDoesNotExistInApplied(jobDetails);
     });
     
+    await test.step('Logout from application', async () => {
+      await homePage.logout();
+      await homePage.verifyLoggedOut();
+    });
+    
     logger.info('Job Tracker E2E test completed successfully');
   });
 });
+

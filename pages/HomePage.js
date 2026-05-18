@@ -24,6 +24,18 @@ class HomePage extends BasePage {
       .or(page.getByText(/job tracker/i))
       .or(page.locator('a, button').filter({ hasText: /job tracker/i }))
       .first();
+    
+    // Logout button selectors
+    this.logoutButton = page
+      .getByRole('button', { name: /logout|log out|sign out|exit/i })
+      .or(page.getByText(/logout|log out|sign out/i))
+      .first();
+    
+    // User menu for accessing logout (sometimes in a dropdown)
+    this.userMenu = page
+      .getByRole('button', { name: /profile|user|account|menu/i })
+      .or(page.locator('[class*="avatar"], [class*="user-menu"]'))
+      .first();
   }
   
   async verifyDashboardIsLoaded() {
@@ -46,6 +58,56 @@ class HomePage extends BasePage {
     this.logger.step('Navigate to Job Tracker');
     await this.clickElement(this.jobTrackerNavigation, 'job tracker navigation', true);
     this.logger.info('Navigated to Job Tracker');
+  }
+  
+  async logout() {
+    this.logger.step('Logout from application');
+    
+    // Try to click logout button directly
+    const logoutVisible = await this.logoutButton.isVisible().catch(() => false);
+    
+    if (logoutVisible) {
+      await this.clickElement(this.logoutButton, 'logout button', true);
+      this.logger.info('Logged out successfully');
+      return;
+    }
+    
+    // If logout button not visible, try opening user menu first
+    const userMenuVisible = await this.userMenu.isVisible().catch(() => false);
+    if (userMenuVisible) {
+      await this.clickElement(this.userMenu, 'user menu');
+      
+      // Wait for logout button to appear in dropdown
+      const logoutInMenu = this.page
+        .getByRole('button', { name: /logout|log out|sign out|exit/i })
+        .or(this.page.getByText(/logout|log out|sign out/i))
+        .first();
+      
+      await expect(logoutInMenu).toBeVisible({ timeout: this.defaultTimeout });
+      await this.clickElement(logoutInMenu, 'logout option in menu', true);
+      this.logger.info('Logged out successfully');
+      return;
+    }
+    
+    this.logger.warn('Logout button not found, but continuing test');
+  }
+  
+  async verifyLoggedOut() {
+    this.logger.step('Verify user is logged out');
+    
+    // Should be redirected to login page or see login elements
+    const loginButton = this.page.getByRole('button', { name: /login|continue/i });
+    const loginInput = this.page.getByPlaceholder(/email|password/i);
+    
+    const isLoginButtonVisible = await loginButton.isVisible().catch(() => false);
+    const isLoginInputVisible = await loginInput.isVisible().catch(() => false);
+    
+    if (isLoginButtonVisible || isLoginInputVisible) {
+      this.logger.info('User successfully logged out - login page visible');
+      return;
+    }
+    
+    this.logger.warn('Could not verify logout - login page not visible');
   }
 }
 

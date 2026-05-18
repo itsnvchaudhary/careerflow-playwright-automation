@@ -47,7 +47,7 @@ class Config {
     
     // Retry configuration
     this.retries = {
-      maxRetries: parseInt(process.env.MAX_RETRIES || '1'),
+      maxRetries: parseInt(process.env.MAX_RETRIES || '0'),
       retryOnFailure: process.env.RETRY_ON_FAILURE === 'true' || this.environment === 'ci',
     };
     

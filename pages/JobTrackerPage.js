@@ -18,18 +18,30 @@ class JobTrackerPage extends BasePage {
     this.addJobButton = page
       .getByRole('button', { name: /add job|add new job|new job/i })
       .or(page.getByRole('link', { name: /add job|add new job|new job/i }))
+      .or(page.locator('button').filter({ hasText: /add job|add new job|new job/i }))
       .first();
     
     this.appliedSection = page
       .getByRole('heading', { name: /^applied$/i })
       .or(page.getByText(/^applied$/i))
       .first();
+    
+    // Main content area
+    this.mainContent = page.locator('[role="main"]').or(page.locator('main')).first();
   }
   
   async verifyJobTrackerPageIsLoaded() {
     this.logger.step('Verify Job Tracker page is loaded');
     
-    // Just wait for the heading to be visible - don't wait for network idle
+    // First, wait for main content to be visible
+    await this.verifyElementVisible(this.mainContent, 'main content area');
+    
+    // Wait for network to be mostly idle to ensure page content is rendered
+    await this.page.waitForLoadState('networkidle', { timeout: 10000 }).catch(() => {
+      this.logger.debug('Network idle timeout - continuing with verification');
+    });
+    
+    // Now verify key elements
     await this.verifyElementsVisible([
       [this.heading, 'job tracker heading'],
       [this.addJobButton, 'add job button'],

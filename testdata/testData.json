@@ -1,16 +1,8 @@
 {
   "jobDetails": {
-    "companyName": "Microsoft",
-    "jobTitle": "QA Automation Engineer",
+    "companyName": "Apple",
+    "jobTitle": "SDET",
     "location": "Remote",
-    "jobStatus": "Applied",
-    "jobUrl": "https://careers.microsoft.com/"
-  },
-  "altJobDetails": {
-    "companyName": "Google",
-    "jobTitle": "Software Quality Engineer",
-    "location": "Mountain View, CA",
-    "jobStatus": "Applied",
-    "jobUrl": "https://careers.google.com/"
+    "jobStatus": "Applied"
   }
 }
