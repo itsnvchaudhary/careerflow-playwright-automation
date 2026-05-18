@@ -11,6 +11,7 @@ config.logConfig();
 
 module.exports = defineConfig({
   testDir: './tests',
+  testMatch: ['**/*.spec.js', '**/*.spec.ts', '**/*.test.js', '**/*.test.ts'],
   
   // Global timeout for all tests
   timeout: config.timeouts.page,

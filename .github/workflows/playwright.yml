@@ -41,6 +41,16 @@ jobs:
       - name: Install Playwright browsers
         run: npx playwright install chromium --with-deps
 
+      - name: Validate test discovery
+        run: |
+          echo "Working directory: $(pwd)"
+          echo "Listing test files in repository"
+          find . -maxdepth 3 -type f \( -name '*.spec.js' -o -name '*.spec.ts' -o -name '*.test.js' -o -name '*.test.ts' \) | sort
+          echo "Listing Playwright configuration file"
+          ls -la playwright.config.js
+          echo "Listing Playwright tests from config"
+          npx playwright test --list --config=playwright.config.js
+
       - name: Run Playwright tests
         run: npm run test:ci
 
