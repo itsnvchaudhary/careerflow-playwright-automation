@@ -115,29 +115,56 @@ class JobTrackerPage extends BasePage {
   
   async deleteJobFromDetailsPage(jobDetails) {
     this.logger.step('Delete job from details page', `${jobDetails.companyName} / ${jobDetails.jobTitle}`);
+    
     const deleteButton = this.page.getByRole('button', { name: /^Delete$/i }).first();
-    await expect(deleteButton).toBeVisible({ timeout: this.defaultTimeout });
-    await expect(deleteButton).toBeEnabled({ timeout: this.defaultTimeout });
-    await deleteButton.click({ force: true, timeout: this.actionTimeout });
-    this.logger.debug('Clicked delete button with force: true');
+    await this.clickElement(deleteButton, 'delete button');
 
-    const confirmButton = this.page.getByRole('button', { name: /^OK$/i }).first();
-    if (await confirmButton.isVisible().catch(() => false)) {
-      await expect(confirmButton).toBeEnabled({ timeout: this.defaultTimeout });
-      await confirmButton.click({ force: true, timeout: this.actionTimeout });
-      this.logger.debug('Clicked delete confirmation button with force: true');
-    }
+    // Wait for the DELETE confirmation dialog specifically (by accessible name)
+    const deleteConfirmDialog = this.page.getByRole('dialog', { name: /Delete job confirmation/i });
+    await expect(deleteConfirmDialog).toBeVisible({ timeout: this.defaultTimeout });
+    this.logger.debug('Delete confirmation dialog appeared');
 
-    const jobDetailsDialog = this.page.getByRole('dialog', { name: /Job Details/i }).first();
-    await jobDetailsDialog.waitFor({ state: 'hidden', timeout: this.defaultTimeout }).catch(() => {
-      this.logger.debug('Job Details dialog did not hide immediately after delete');
+    // Find OK button scoped to the delete dialog only
+    const okButton = deleteConfirmDialog.getByRole('button', { name: /^OK$/i });
+    
+    // Click OK and wait for the job card to disappear
+    await okButton.click({ timeout: this.actionTimeout });
+    this.logger.debug('Clicked OK button on delete confirmation');
+
+    // Wait for delete dialog to close
+    await deleteConfirmDialog.waitFor({ state: 'hidden', timeout: this.defaultTimeout }).catch(() => {
+      this.logger.debug('Delete dialog did not hide');
     });
 
-    const appliedHeading = this.page.getByRole('heading', { name: /^Applied$/i }).first();
-    await expect(appliedHeading).toBeVisible({ timeout: this.defaultTimeout });
+    // Wait for network to be idle after deletion
+    await this.page.waitForLoadState('networkidle', { timeout: this.defaultTimeout }).catch(() => {
+      this.logger.debug('Network idle timeout after delete');
+    });
 
-    this.logger.info('Delete action triggered for job details');
+    // Wait for the job card to actually disappear from the Applied section
+    const matchingCard = this.page
+      .getByRole('button')
+      .filter({ hasText: jobDetails.jobTitle })
+      .filter({ hasText: jobDetails.companyName });
+
+    await matchingCard.nth(0).waitFor({ state: 'hidden', timeout: this.defaultTimeout }).catch(async () => {
+      // If card doesn't hide with locator wait, reload and verify it's gone
+      this.logger.debug('Job card did not hide, reloading page to verify deletion');
+      await this.page.reload();
+      await this.page.waitForLoadState('networkidle', { timeout: this.defaultTimeout }).catch(() => {
+        this.logger.debug('Network idle on reload');
+      });
+    });
+
+    // Final verification
+    const count = await matchingCard.count();
+    if (count > 0) {
+      throw new Error(`Delete failed: job still present (${count} cards found) - ${jobDetails.jobTitle} @ ${jobDetails.companyName}`);
+    }
+
+    this.logger.info('Delete action completed and job card removed from Applied section');
   }
+
   
   async verifyJobDoesNotExistInApplied(jobDetails) {
     this.logger.step('Verify job no longer exists in Applied section', `${jobDetails.companyName} / ${jobDetails.jobTitle}`);
